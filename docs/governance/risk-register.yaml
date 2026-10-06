@@ -1,0 +1,76 @@
+# Coldline - Task 4.6
+# File: docs/governance/risk-register.yaml
+# Component: Risk register
+# Purpose: Record, for each selected risk, the control that addresses it, the test that checks it, the evidence of a real run, the owner role and the residual risk.
+# Interacts With: docs/security/control-matrix.md, docs/governance/owners.md, docs/governance/concerns.md, evidence/attack-dev.json, tests/contract/test_governance_contract.py
+# Sprint/Task: Sprint 4 - Project 4 / Task 4.6
+# Concepts: Risk register, residual risk, ownership, evidence from a real run
+# Tools: YAML
+
+# This file is yours in Task 4.6. The five risks are supplied: their register ids, the
+# Task 1 threat each one stands for (the settled top five of docs/student/threat-model.md,
+# in rank order) and a title. Fill the six empty fields of every entry:
+# - control: one control id from docs/security/control-matrix.md (`C-nn`).
+# - test: one test in this repository, as `<path>::<test name>`; a parametrized test by
+#   its function name, without the `[...]` id. `poe verify` collects it with pytest.
+# - evidence: either `attack-dev:<stage>`, naming a stage of evidence/attack-dev.json
+#   (`token_check`, `output_schema`, `redactor` or `audit_trail`), or, for a control that
+#   has no stage in the combined attack, a citation of the Task where you showed it, in
+#   exactly this form:
+#   `task-4.<n> pull request <URL of your merged pull request> commit <accepted commit>`
+#   The citation form says in itself that the evidence is from that Task's run.
+# - owner: one role id from docs/governance/owners.md, chosen by the rule it states.
+# - residual: one or two sentences: what can still go wrong with the control in place,
+#   how likely or how bad it would be, and what the tested cases leave unestablished.
+#   Never "none".
+# - mapping_note: empty, except in the one entry whose control you record in
+#   answers.governance_mapping. There, say what the control contributes to the concern
+#   and what it does not.
+# Keep the supplied keys and the supplied values; add no entry and remove none, and add
+# nothing beside `risks`.
+risks:
+  - id: R-01
+    threat: TH-01
+    title: Summary read by anyone who can reach the API
+    control: ""
+    test: ""
+    evidence: ""
+    owner: ""
+    residual: ""
+    mapping_note: ""
+  - id: R-02
+    threat: TH-03
+    title: Manipulated or malformed answer stored as the summary
+    control: ""
+    test: ""
+    evidence: ""
+    owner: ""
+    residual: ""
+    mapping_note: ""
+  - id: R-03
+    threat: TH-06
+    title: Personal details in the handling note reach logs, the provider, and the record
+    control: ""
+    test: ""
+    evidence: ""
+    owner: ""
+    residual: ""
+    mapping_note: ""
+  - id: R-04
+    threat: TH-05
+    title: Summary reads leave no record of who read what
+    control: ""
+    test: ""
+    evidence: ""
+    owner: ""
+    residual: ""
+    mapping_note: ""
+  - id: R-05
+    threat: TH-07
+    title: Provider key readable in the worker's configuration module
+    control: ""
+    test: ""
+    evidence: ""
+    owner: ""
+    residual: ""
+    mapping_note: ""

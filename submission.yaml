@@ -1,0 +1,56 @@
+# Coldline - Task 4.6
+# File: submission.yaml
+# Component: Student answer sheet
+# Purpose: Record your review of each claim in the AI-generated analysis, the control and concern you mapped, your decision, and the risk you accept.
+# Interacts With: Submission schema, public verifier, protected answer check
+# Sprint/Task: Sprint 4 - Project 4 / Task 4.6
+# Concepts: Governance evidence, claim review, deterministic assessment
+# Tools: YAML
+
+# Complete submission.yaml from the evidence sources named beside each answer.
+# Keep the supplied keys; replace the empty values using each field's stated values.
+# Empty values and placeholder text fail verification.
+# Use submission-sample.yaml for format only; do not copy its fictional values.
+# Do not include secrets, personal data, or local absolute paths.
+
+answers:
+  # Task 4.6 — Step 2: Correct the AI-generated analysis
+  # Source: docs/governance/ai-governance-analysis.md (the numbered claims), checked
+  # against the code, the tests, evidence/attack-dev.json and docs/governance/concerns.md.
+  # One entry per claim id (`CL-nn`), mapping it to one of these values, applied in this
+  # order: `wrong_mapping` when the claim links a control to a concern it doesn't address;
+  # otherwise `unsupported` when nothing in the repository supports the claim or any
+  # narrower version of it; otherwise `overclaim` when the evidence supports a narrower
+  # version of the claim but not the claim as written; otherwise `supported`.
+  # The allowed values, as exact strings:
+  # - wrong_mapping
+  # - unsupported
+  # - overclaim
+  # - supported
+  # For example (the id and the value are the shape only, not a reading of any claim):
+  #   claim_review:
+  #     CL-00: <one of the four values above>
+  claim_review: {}
+
+  # Task 4.6 — Step 3: Complete the risk register and map one control
+  # Source: docs/governance/risk-register.yaml (one control id you recorded there, `C-nn`,
+  # from docs/security/control-matrix.md) and docs/governance/concerns.md (one concern id,
+  # `GC-nn`, that the control serves). Record what the control contributes to that
+  # concern, and what it doesn't, in that register entry's `mapping_note`.
+  governance_mapping:
+    control: ""
+    concern: ""
+
+  # Task 4.6 — Step 4: Issue the technical decision
+  # Source: docs/governance/decision-policy.md applied to your completed register and the
+  # stage outcomes in evidence/attack-dev.json. One of these exact strings:
+  # - go
+  # - conditional_go
+  # - no_go
+  decision: ""
+
+  # The register id (`R-nn`) of the one residual risk you accept for now, chosen from
+  # those docs/governance/decision-policy.md allows you to accept. Required for every
+  # outcome; docs/governance/decision-record.md says why it is acceptable, who owns it, and
+  # what evidence would change the decision.
+  accepted_risk: ""

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Coldline Task 4.6 public answer contract. Four answers: a claim-review map from each claim id of docs/governance/ai-governance-analysis.md to one of the four classification values, applied in the order the sheet's comments state; one governance mapping naming a control id from the risk register and a concern id from docs/governance/concerns.md; the decision the decision policy gives for the completed register; and the register id of the one residual risk accepted for now. The public check validates this shape and that the sheet is not a copy of the sample; the protected answer check compares the four values after the submission on the platform. There is no self-attestation field, no pass boolean, and no recording URL.",
+  "title": "Coldline Task 4.6 answers",
+  "description": "The claim review, the governance mapping, the decision, and the accepted risk.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answers"],
+  "$defs": {
+    "claim_id": {
+      "description": "A claim id as the supplied analysis numbers its claims: `CL-` and two digits.",
+      "type": "string",
+      "pattern": "^CL-[0-9]{2}$"
+    },
+    "control_id": {
+      "description": "A control id as docs/security/control-matrix.md lists them: `C-` and two digits.",
+      "type": "string",
+      "pattern": "^C-[0-9]{2}$"
+    },
+    "concern_id": {
+      "description": "A concern id as docs/governance/concerns.md lists them: `GC-` and two digits.",
+      "type": "string",
+      "pattern": "^GC-[0-9]{2}$"
+    },
+    "register_id": {
+      "description": "A register id as docs/governance/risk-register.yaml lists them: `R-` and two digits.",
+      "type": "string",
+      "pattern": "^R-[0-9]{2}$"
+    }
+  },
+  "properties": {
+    "answers": {
+      "description": "The only top-level answer mapping accepted by the public verifier.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_review", "governance_mapping", "decision", "accepted_risk"],
+      "properties": {
+        "claim_review": {
+          "description": "One entry per numbered claim of the supplied analysis, mapped to its classification.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^CL-[0-9]{2}$"
+          },
+          "additionalProperties": {
+            "enum": ["wrong_mapping", "unsupported", "overclaim", "supported"]
+          }
+        },
+        "governance_mapping": {
+          "description": "The one control from the risk register and the one concern it serves.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["control", "concern"],
+          "properties": {
+            "control": {
+              "description": "The control id, recorded in one register entry's `control` field.",
+              "$ref": "#/$defs/control_id"
+            },
+            "concern": {
+              "description": "The concern id, from docs/governance/concerns.md.",
+              "$ref": "#/$defs/concern_id"
+            }
+          }
+        },
+        "decision": {
+          "description": "The outcome docs/governance/decision-policy.md gives for the completed register.",
+          "enum": ["go", "conditional_go", "no_go"]
+        },
+        "accepted_risk": {
+          "description": "The register id of the one residual risk accepted for now.",
+          "$ref": "#/$defs/register_id"
+        }
+      }
+    }
+  }
+}
