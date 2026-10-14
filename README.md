@@ -87,8 +87,9 @@ For this Task, run the supplied commands in this order:
 poe start
 poe ingest
 poe attack-dev                           # Step 1
-poe audit-trail <exception_id>           # the id attack-dev printed; confirm the event ids
-poe answers                              # Steps 2 to 4, as you fill the sheet
+poe audit-trail <exception_id> --json    # the id attack-dev printed; match each audit_id
+poe governance-contract                  # Steps 2 to 4: the rows for the Steps you have done pass
+poe answers                              # Step 4: passes once every answer is filled
 poe held-out-dry-run                     # Step 4
 poe verify
 ```
@@ -99,10 +100,10 @@ root. Where a Task page shortens a command to `poe <task>`, that is the form it 
 | Command | Use |
 |---|---|
 | `poe attack-dev` | Send the supplied development attack (`tests/fixtures/attacks/development.json`) through the running stack: one reading whose handling note carries personal details and whose answer the emulator manipulates, one summary read with an unauthorized token, one read as the dispatcher. Writes `evidence/attack-dev.json` with four stages (`token_check`, `output_schema`, `redactor`, `audit_trail`), each with what was sent, what the control did, an outcome (`held`, `limited`, `failed`), the exception id and, where the stage produced audit events, their ids; prints the stage summary. Needs the running stack; exit 2 means the run could not be made |
-| `poe audit-trail <exception_id>` | Print one exception's audit records in order; the `#` column is the event id the evidence file names |
+| `poe audit-trail <exception_id>` | Print one exception's audit records in order. The table's `#` column numbers them within the exception; `--json` prints each record's `audit_id`, the event id the evidence file names |
 | `poe held-out-dry-run` | Exercise the held-out procedure's mechanism against a fake, non-secret scenario with every interface of the stack replaced by an in-memory stand-in, with no Docker: it reaches every interface and tells a pass, a failed grade and an unusable run apart. It is not the protected held-out check |
-| `poe governance-contract` | The assessed rows: the four stages in the evidence file, every claim classified, the corrections and their citations, each register entry's control, test, evidence, owner and residual, the mapping and its note, the decision record's sections, the accepted risk, the wording scan and the sheet's format. Static; needs the evidence file from `poe attack-dev` |
-| `poe answers` | The answer sheet's format only: a non-empty claim-review map keyed by claim ids with the four allowed values, a mapping with one control id and one concern id, a decision from the three allowed values, a register id as the accepted risk, and the sheet not a copy of `submission-sample.yaml` |
+| `poe governance-contract` | The assessed rows: the four stages in the evidence file, every claim classified, the corrections and their citations, each register entry's control, test, evidence, owner and residual, the mapping and its note, the decision record's sections, the accepted risk, the wording scan and the sheet's format. Static; needs the evidence file from `poe attack-dev`. Run it after each Step: the rows for the Steps you have done pass, and the rest fail until you reach them |
+| `poe answers` | The answer sheet's format only: a non-empty claim-review map keyed by claim ids with the four allowed values, a mapping with one control id and one concern id, a decision from the three allowed values, a register id as the accepted risk, and the sheet not a copy of `submission-sample.yaml`. It stops at the first blank answer, so it passes only once every answer is filled; until then, use `poe governance-contract` |
 | `poe submission` | The same check plus the permitted-files boundary: the diff from your merge base touches only the four student files |
 | `poe integrity-record`, `poe integrity-check` | The first and last steps of `poe verify`: hash your four files and the checks' own files into a snapshot outside the repository, then compare the tree with it, so a file that changed while the run was in progress is named |
 | `poe verify` | The public student verification path: it starts the stack, runs the development attack and the held-out dry run, and runs this Task's assessed rows, the answer format and the boundary |

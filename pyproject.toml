@@ -245,8 +245,9 @@ seed-vulnerable = "python -m tests.security.seeds vulnerable"
 # be read it prints a diagnostic and withholds the logs. Usable locally after a failed run.
 runtime-logs = "python -m tests.security.runtime_logs"
 # Task 4.4's and Task 4.3's tools, kept for Step 1 and for the register's evidence:
-# `audit-trail <exception_id>` prints one exception's audit records in order (the event ids
-# evidence/attack-dev.json names are its `#` column); `pii-scan <exception_id>` searches the
+# `audit-trail <exception_id>` prints one exception's audit records in order (`--json` prints the
+# `audit_id` that evidence/attack-dev.json names; the table's `#` column only numbers the rows);
+# `pii-scan <exception_id>` searches the
 # worker logs, the model request, the audit records and the stored summary for the marked
 # values of a run's supplied note and response and prints what it found where, by label;
 # `redaction-report` prints every supplied note's original text, redacted text and marked
