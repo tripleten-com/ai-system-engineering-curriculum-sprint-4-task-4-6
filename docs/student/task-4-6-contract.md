@@ -64,7 +64,8 @@ Read the twelve claims. For each one, find the code, test or evidence record tha
 it; `docs/governance/concerns.md` defines the concerns a mapping claim refers to. Classify each
 claim in `answers.claim_review` in the order the sheet's comments state, and write one entry in
 `docs/student/governance-corrections.md` for each claim that is not `supported`, plus at least
-one omitted-risk entry. Run `poe answers`.
+one omitted-risk entry. Run `poe governance-contract`: the claim-review, corrections and
+wording rows pass, and the rows for Steps 3 and 4 fail until you reach them.
 
 ### Step 3 — Complete the risk register and map one control
 
@@ -73,7 +74,8 @@ record, the owner role id and the residual risk; the supplied id, threat and tit
 entry stay as they are. Choose one control from the register and one concern of
 `docs/governance/concerns.md` whose every criterion that control meets, as the control matrix
 describes the control and the evidence shows it; record both in `answers.governance_mapping`
-and write that entry's `mapping_note`. Run `poe answers`.
+and write that entry's `mapping_note`. Run `poe governance-contract`: the register and mapping
+rows pass, and the decision, accepted-risk and answer-format rows fail until Step 4.
 
 ### Step 4 — Issue the technical decision and pass the held-out check
 
