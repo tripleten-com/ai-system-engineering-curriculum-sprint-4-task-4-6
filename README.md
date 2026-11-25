@@ -14,13 +14,12 @@ scenario sends one combined attack through the same request, token, audit and ev
 interfaces the held-out check uses. You run it, correct the analysis, complete the register, map
 one control to one concern, issue one technical decision, and pass the held-out check.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/tripleten-com/ai-system-engineering-curriculum-sprint-4-task-4-6/tree/main)
-
 ## Start the system
 
 Prerequisites are Python 3.12 and Docker with Compose v2. The supplied bootstrap supports macOS
 arm64/x86-64, Windows x86-64, and Linux x86-64/aarch64, and installs pinned uv 0.11.8 under
-`.tools/bin`. If your computer cannot run the stack locally, use the Codespaces button above.
+`.tools/bin`. If your computer cannot run the stack locally, ask your instructor about GitHub
+Codespaces.
 
 On macOS and most Linux distributions the interpreter is `python3`; substitute it wherever these
 commands say `python`.
